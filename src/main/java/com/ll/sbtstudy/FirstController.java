@@ -10,7 +10,14 @@ public class FirstController {
     @GetMapping("/hi")
     public String niceToMeetYou(Model model) {
 
-        model.addAttribute("username","홍팍");
+        model.addAttribute("nickname","Freedom");
         return "greetings";
+    }
+
+    @GetMapping("/bye")
+    public String seeYouNext(Model model) {
+
+        model.addAttribute("nickname","Freedom");
+        return "goodbye";
     }
 }
