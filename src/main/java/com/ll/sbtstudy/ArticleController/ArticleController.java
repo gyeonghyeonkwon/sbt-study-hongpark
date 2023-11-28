@@ -19,11 +19,11 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
-    @GetMapping("/")
-    public String ArticlesRedirect() {
-
-        return "redirect:/articles/new";
-    }
+//    @GetMapping("/")
+//    public String ArticlesRedirect() {
+//
+//        return "redirect:/articles/new";
+//    }
 
     @GetMapping("/articles/new")
     public String newArticleForm() {
@@ -47,7 +47,8 @@ public class ArticleController {
         Article saved = articleRepository.save(article);
 
         log.info(saved.toString());
-        return "";
+        return "redirect:/articles/" + saved.getId();
+
     }
     @GetMapping("/articles/{id}")
     public String show (@PathVariable Long id, Model model) {
@@ -58,7 +59,7 @@ public class ArticleController {
         //2. 모델에 데이터 등록하기
         model.addAttribute("article",articleEntity);
         //3. 뷰 페이지 반환하기
-       return "";
+       return "articles/show";
     }
     @GetMapping("/articles")
     public String index (Model model) {
